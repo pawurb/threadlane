@@ -306,6 +306,20 @@ cargo nextest run -p threadlane-updater
 cargo nextest run --workspace
 ```
 
+### Pull request performance reports
+
+[hotpath Cloud](https://hotpath.rs/cloud) benchmarks the `provider` and
+`dispatch` suites on every pull request, forks included, and comments with the
+difference from `main` under the policy in `hotpath/policy.toml`. Run a suite
+locally with:
+
+```bash
+HOTPATH_METRICS_SERVER_OFF=1 \
+cargo run --release -p threadlane-benchmarks --bin provider --features hotpath,hotpath-alloc
+```
+
+Both suites are fixed, local-only workloads that make no provider requests.
+
 ### Session-read benchmark
 
 ```bash
